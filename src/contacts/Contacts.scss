@@ -1,0 +1,24 @@
+@import "../variables.scss";
+
+.contacts-box {
+  margin: 100px 0;
+  text-align: center;
+
+  .contacts-text {
+    margin-bottom: 40px;
+  }
+  .contacts {
+    display: flex;
+    justify-content: space-evenly;
+
+    .phone, .email {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 30px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

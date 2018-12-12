@@ -1,0 +1,27 @@
+@import "../variables.scss";
+
+table, th, td {
+  border: 1px solid #4eada9;
+  height: 20px;
+}
+
+.cart-table {
+  width: 80%;
+  margin: 30px auto;
+  border-collapse: collapse;
+
+  color: teal;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+
+  .table-header {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+  }
+  .remove:hover {
+    cursor: pointer;
+    color: teal;
+  }
+}
