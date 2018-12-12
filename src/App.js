@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
 import Item from './item/Item';
 import Modal from './modal/Modal';
@@ -41,16 +40,32 @@ const items = [
     price: '150,00'
   },
 ]
+const orderedItems = [];
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.items = items;
-    console.log(items)
+    this.state = {
+        orderedItems: orderedItems,
+    }
+  }
+
+  handleAddToCart(item, inCart) {
+      if (inCart) {
+          this.state.orderedItems.push(item);
+          this.setState({orderedItems: this.state.orderedItems});
+      } else {
+          const indexToDelete = this.state.orderedItems
+          .findIndex(orderedItem => orderedItem.id === item.id);
+          this.state.orderedItems.splice(indexToDelete, 1);
+          this.setState({orderedItems: this.state.orderedItems});
+      }
   }
 
   render() {
+      console.log(this.state);
     return (
       <div className="natshop">
         <header className="header">
@@ -60,7 +75,15 @@ class App extends Component {
         </header>
 
         <section className="shop-content">
-          <Item items={this.items}></Item>
+            <div className="items-box">
+                {this.items.map(item => (
+                    <Item
+                        key={item.id}
+                        item={item}
+                        onButtonClick={this.handleAddToCart.bind(this)}
+                    />
+                ))}
+            </div>
         </section>
 
         <section className="contacts-container" id='test-name'>

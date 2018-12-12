@@ -13,27 +13,27 @@ class Item extends React.Component {
     }
   }
 
-  addTOCart(e) {
-    this.state.inCart = !this.state.inCart;
-    this.state.buttonValue = 'Удалить из корзины';
-    console.log('e.target', e.target);
-    console.log('this.state.buttonValue', this.state.buttonValue)
+  addToCart() {
+      this.setState({
+          inCart: !this.state.inCart,
+      });
+      this.props.onButtonClick(this.props.item, !this.state.inCart);
   }
 
   render() {
     return (
-      <div className="items-box">
-        {this.props.items.map(item => (
-          <div key={item.id} className="item">
-          <img className="image" src={item.img}></img>
-          <div key={item.id} className="item-content">
-            <p className="title">{item.title}</p>
-            <p className="description">{item.description}</p>
-            <p className="price">{item.price} + грн</p>
-            <button className="button" onClick={this.addTOCart.bind(this)}>{this.state.buttonValue}</button>
+      <div >
+          <div key={this.props.item.id} className="item">
+          <img className="image" src={this.props.item.img}></img>
+          <div key={this.props.item.id} className="item-content">
+            <p className="title">{this.props.item.title}</p>
+            <p className="description">{this.props.item.description}</p>
+            <p className="price">{this.props.item.price} + грн</p>
+            <button className="button" onClick={this.addToCart.bind(this)}>
+                {this.state.inCart ? 'Удалить' : 'В коризну'}
+            </button>
           </div>
           </div>
-         ))}
       </div>
     );
   }

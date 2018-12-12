@@ -33,6 +33,12 @@ body {
         max-width: 1400px;
         margin: 100px auto;
       }
+
+      .items-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
   }
 }
