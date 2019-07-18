@@ -49,6 +49,7 @@ class App extends Component {
     this.items = items;
     this.state = {
         orderedItems: orderedItems,
+        inCart:false,
     }
   }
 
@@ -62,10 +63,10 @@ class App extends Component {
           this.state.orderedItems.splice(indexToDelete, 1);
           this.setState({orderedItems: this.state.orderedItems});
       }
+      orderedItems.length > 0 ? this.state.inCart = true : this.state.inCart = false;
   }
 
   render() {
-      console.log(this.state);
     return (
       <div className="natshop">
         <header className="header">
@@ -90,7 +91,7 @@ class App extends Component {
           <Contacts></Contacts>
         </section>
 
-        <Modal></Modal>
+        <Modal orderedItems={orderedItems}></Modal>
         <Counter></Counter>
       </div>
     );

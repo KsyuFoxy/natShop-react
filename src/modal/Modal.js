@@ -5,20 +5,25 @@ import CartTable from '../cartTable/CartTable';
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      display: 'none'
+      display: 'none',
+      data: [],
     }
+
+    //if (this.props.inCart) {
+    //  return <CartTable data={this.props.orderedItems}></CartTable>
+    //}
   }
 
   openModal() {
     this.setState({
-      display: 'block'
-    })
+      display: 'block',
+    });
+    this.state.data.push(this.props.orderedItems);
   }
   closeModal() {
     this.setState({
-      display: 'none'
+      display: 'none',
     })
   }
 
@@ -30,8 +35,7 @@ class Modal extends React.Component {
           <div className="modal-content">
             <span className="close" onClick={this.closeModal.bind(this)}>&times;</span>
             <p>В вашей корзине:</p>
-
-            <CartTable></CartTable>
+<CartTable data={this.props.orderedItems}></CartTable>
           </div>
         </div>
       </section>

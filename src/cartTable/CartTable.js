@@ -5,51 +5,58 @@ class CartTable extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      inCart: false,
-      orderedItems: [],
       buttonValue: 'В корзину',
+      items: {
+        columns: ['Наименование', 'К-во', 'Стоимость', 'Всего', 'remove'],
+        rows: [],
+      },
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ data: nextProps.data });
+
+    this.state.items.rows = [];
+    this.props.data.forEach((item) => {
+      const row = Object.assign({
+        'Наименование': item.title,
+        'К-во': 1,
+        'Стоимость': item.price,
+        'remove': "x",
+        'Всего': 1
+      })
+      this.state.items.rows.push(row);
+      this.state.items.rows.forEach((row) => {
+        
+        console.log('row', row.remove)
+      //  row.remove.className = 'remove';
+      });
+
+      console.log('this.state.items.rows', this.state.items.rows)
+    })
+  };
+
   render() {
     return (
-      <table id="cartTable" className="cart-table">
+      <table className="cart-table">
         <tbody>
-          <tr className="table-header">
-            <th>
-              Наименование
-            </th>
-            <th>
-              К-во
-            </th>
-            <th>
-              Стоимость
-            </th>
-            <th className="remove">
-              Удалить
-            </th>
-          </tr>
-
           <tr>
-            <td>
-              blabla
-            </td>
-            <td>
-              1
-            </td>
-            <td>
-              100
-            </td>
-            <td>
-              x
-            </td>
+            {this.state.items.columns.map((column, i) => {
+              return <th key={i}>{column}</th>; })}
           </tr>
 
+          {this.state.items.rows.map((row, j) => {
+            const _this = this;
+            return (
+              <tr key={j}>
+                {_this.state.items.columns.map((column, i) => {
+                   return <td key={i}>{row[column]}</td>; })}
+               </tr>
+             );
+          })}
         </tbody>
       </table>
-
     );
   }
 }
