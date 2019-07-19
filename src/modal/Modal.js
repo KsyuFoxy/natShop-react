@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Modal.scss';
-import CartTable from '../cartTable/CartTable';
+import Table from '../table/Table';
 
 class Modal extends React.Component {
   constructor(props) {
@@ -9,10 +9,6 @@ class Modal extends React.Component {
       display: 'none',
       data: [],
     }
-
-    //if (this.props.inCart) {
-    //  return <CartTable data={this.props.orderedItems}></CartTable>
-    //}
   }
 
   openModal() {
@@ -34,8 +30,7 @@ class Modal extends React.Component {
         <div className="modal" style={{display:this.state.display}}>
           <div className="modal-content">
             <span className="close" onClick={this.closeModal.bind(this)}>&times;</span>
-            <p>В вашей корзине:</p>
-<CartTable data={this.props.orderedItems}></CartTable>
+            <Table items={this.props.orderedItems} title="В вашей корзине:"></Table>
           </div>
         </div>
       </section>

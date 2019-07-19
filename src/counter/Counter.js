@@ -13,7 +13,11 @@ class Counter extends React.Component {
   }
 
   increment() {
-    this.setState({counter: this.state.counter+1})
+    this.setState({
+      counter: this.state.counter+1
+    }, () => {
+      this.updateCounter();
+    })
     if (this.state.counter < 5) {
       this.setState({incrementDisabled: false});
       this.setState({decrementDisabled: false});
@@ -23,13 +27,21 @@ class Counter extends React.Component {
   }
 
   decrement() {
-    this.setState({counter: this.state.counter-1})
+    this.setState({
+      counter: this.state.counter-1
+    }, () => {
+      this.updateCounter();
+    })
     if (this.state.counter > 2) {
       this.setState({incrementDisabled: false});
       this.setState({decrementDisabled: false});
     } else {
       this.setState({decrementDisabled: true});
     }
+  }
+
+  updateCounter() {
+    this.props.onChange(this.state.counter);
   }
 
   render() {

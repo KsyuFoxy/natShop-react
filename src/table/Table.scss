@@ -1,0 +1,36 @@
+.table {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  border-collapse: collapse;
+  border: 1px solid #4eada9;
+  border-radius: 6px;
+  font-size: 16px;
+  text-decoration: none;
+  width: 80%;
+  margin: 30px auto;
+
+  th {
+    background-color: #4eada9;
+    color: white;
+    font-weight: 900;
+    border: 1px solid white;
+    padding: 12px 8px;
+    border: 1px solid #4eada9;
+  }
+
+  td {
+    background-color: white;
+    padding: 8px;
+    border: 1px solid #4eada9;
+  }
+
+  .remove {
+    color: teal;
+
+    &:hover {
+      cursor: pointer;
+      color: black;
+      font-weight: 900;
+    }
+  }
+}
