@@ -13,11 +13,9 @@ class Counter extends React.Component {
   }
 
   increment() {
-    this.setState({
-      counter: this.state.counter+1
-    }, () => {
-      this.updateCounter();
-    })
+    const nextValue = this.state.counter + 1;
+    this.setState({counter: nextValue});
+    this.updateCounter(nextValue);
     if (this.state.counter < 5) {
       this.setState({incrementDisabled: false});
       this.setState({decrementDisabled: false});
@@ -27,11 +25,9 @@ class Counter extends React.Component {
   }
 
   decrement() {
-    this.setState({
-      counter: this.state.counter-1
-    }, () => {
-      this.updateCounter();
-    })
+    const nextValue = this.state.counter - 1;
+    this.setState({counter: nextValue})
+    this.updateCounter(nextValue);
     if (this.state.counter > 2) {
       this.setState({incrementDisabled: false});
       this.setState({decrementDisabled: false});
@@ -40,13 +36,13 @@ class Counter extends React.Component {
     }
   }
 
-  updateCounter() {
-    this.props.onChange(this.state.counter);
+  updateCounter(nextValue) {
+    this.props.onCounterChange(nextValue, this.props.index);
   }
 
   render() {
-    let incrementButton = 'button';
-    let decrementButton = 'button';
+    let incrementButton = 'arrow';
+    let decrementButton = 'arrow arrow-down';
     if (this.state.incrementDisabled) {
       incrementButton += ' disabled';
     }
@@ -58,8 +54,8 @@ class Counter extends React.Component {
       <div className='counter-content'>
         <div>{this.state.counter}</div>
         <div className='counter-buttons'>
-          <button className={incrementButton} onClick={this.increment.bind(this)}>+</button>
-          <button className={decrementButton} onClick={this.decrement.bind(this)}>-</button>
+          <div className={incrementButton} onClick={this.increment.bind(this)}></div>
+          <div className={decrementButton} onClick={this.decrement.bind(this)}></div>
         </div>
       </div>
     );

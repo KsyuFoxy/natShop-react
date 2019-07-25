@@ -46,3 +46,21 @@ h2 {
     outline: none;
   }
 }
+
+//glyphicon
+.glyphicon {
+  color: $middle-green;
+
+  &:hover {
+   color: $dark-green;
+  }
+
+  &.large {
+    font-size: 30px;
+  }
+
+  &.disabled {
+    color: lightgrey;
+    pointer-events: none;
+  }
+}

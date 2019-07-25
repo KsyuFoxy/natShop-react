@@ -3,41 +3,40 @@ import './App.scss';
 import Item from './item/Item';
 import Modal from './modal/Modal';
 import Contacts from './contacts/Contacts';
-import Counter from './counter/Counter';
 
-import image1 from './assets/img/Xmas_2_candles_1.jpg';
-import image2 from './assets/img/Xmas_3_candles_1.jpg';
-import image3 from './assets/img/Xmas_3_candles_2.jpg';
-import image4 from './assets/img/Xmas_3_candles_3.jpg';
+import image1 from './assets/img/White.png';
+import image2 from './assets/img/Sea_star.png';
+import image3 from './assets/img/Shell.png';
+import image4 from './assets/img/Pearl.png';
 
 const items = [
   {
     id: 1,
     img: image1,
-    title: 'Рождественские свечи "Duo"',
-    description: 'Две свечи в комплекте',
-    price: '100,00'
+    title: 'White',
+    description: 'White star',
+    price: '10,00'
   },
   {
-    id: 22,
+    id: 2,
     img: image2,
-    title: 'Рождественские свечи "Trio spruce forest"',
-    description: 'Три свечи в комплекте',
-    price: '150,00'
+    title: 'Sea star',
+    description: 'Sea star',
+    price: '50,00'
   },
   {
-    id: 33,
+    id: 3,
     img: image3,
-    title: 'Рождественские свечи "Trio shell"',
-    description: 'Три свечи в комплекте',
-    price: '150,00'
+    title: 'Shell',
+    description: 'Shell',
+    price: '70,00'
   },
   {
-    id: 44,
+    id: 4,
     img: image4,
-    title: 'Рождественские свечи "Trio fir-tree"',
-    description: 'Три свечи в комплекте',
-    price: '150,00'
+    title: 'Pearl',
+    description: 'Pearl in a shell',
+    price: '30,00'
   },
 ]
 const orderedItems = [];
@@ -92,7 +91,6 @@ class App extends Component {
         </section>
 
         <Modal orderedItems={orderedItems}></Modal>
-        <Counter></Counter>
       </div>
     );
   }
