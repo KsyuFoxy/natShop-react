@@ -17,13 +17,13 @@ h1, h2, p, button, a {
 }
 h1 {
   font-size: 40px;
-  margin: 40px 0;
+  margin: 20px 0;
   font-weight: 900;
   text-align: center;
 }
 h2 {
   font-size: 34px;
-  margin: 34px 0;
+  margin: 16px 0;
   text-align: center;
 }
 
@@ -49,10 +49,12 @@ h2 {
 
 //glyphicon
 .glyphicon {
-  color: $middle-green;
+  color: $dark-green;
+  font-size: 25px;
 
   &:hover {
-   color: $dark-green;
+   color: $middle-green;
+   cursor: pointer;
   }
 
   &.large {

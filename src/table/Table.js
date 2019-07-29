@@ -35,7 +35,7 @@ class Table extends Component {
            <td>{title}</td>
            <td><Counter index={index} onCounterChange={this.changeCounterValue}></Counter></td>
            <td>{price}</td>
-           <td class="remove" onClick={() => this.removeItem(index)}>x</td>
+           <td className="remove" onClick={() => this.removeItem(index)}>x</td>
            <td>{total}</td>
         </tr>
       )
@@ -56,7 +56,7 @@ class Table extends Component {
     return (
       <div>
          <p>{this.props.title}</p>
-         <table class='table'>
+         <table className='table'>
             <tbody>
                <tr>{this.renderTableHeader()}</tr>
                {this.renderTableData()}

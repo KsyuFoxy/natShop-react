@@ -11,28 +11,28 @@ import image4 from './assets/img/Pearl.png';
 
 const items = [
   {
-    id: 1,
+    id: 11,
     img: image1,
     title: 'White',
     description: 'White star',
     price: '10,00'
   },
   {
-    id: 2,
+    id: 22,
     img: image2,
     title: 'Sea star',
     description: 'Sea star',
     price: '50,00'
   },
   {
-    id: 3,
+    id: 33,
     img: image3,
     title: 'Shell',
     description: 'Shell',
     price: '70,00'
   },
   {
-    id: 4,
+    id: 44,
     img: image4,
     title: 'Pearl',
     description: 'Pearl in a shell',
@@ -49,6 +49,8 @@ class App extends Component {
     this.state = {
         orderedItems: orderedItems,
         inCart:false,
+        likedItems: [],
+        heartIcon: false,
     }
   }
 
@@ -65,22 +67,62 @@ class App extends Component {
       orderedItems.length > 0 ? this.state.inCart = true : this.state.inCart = false;
   }
 
+  addLikedItem(index, like) {
+    const item = {index, like};
+    if (like) {
+      this.state.likedItems.push(item);
+    } else {
+      const unlikeItem = this.state.likedItems.findIndex(item => item.index === index);
+      this.state.likedItems.splice(unlikeItem, 1);
+    }
+    this.setState({likedItems : this.state.likedItems});
+  }
+
+  showLikedItems() {
+    console.log('this.state.likedItems', this.state.likedItems)
+  }
+  showCartItems() {
+    this._modal.openModal();
+  }
+
   render() {
     return (
-      <div className="natshop">
-        <header className="header">
-          <h1>Nata Handmade Shop</h1>
-          <p className="collection-name">Новогодняя коллекция</p>
-          <div className="divider"></div>
+      <div className="natshop container">
+        <header className="header d-flex row py-4">
+          <div className="d-flex col-2 justify-content-end"></div>
+          <div className="d-flex col-8 flex-column">
+            <h1>Nata Handmade Shop</h1>
+            <p className="collection-name">Новогодняя коллекция</p>
+            <div className="divider"></div>
+          </div>
+
+          <div className="d-flex col-2 justify-content-end">
+            <div onClick={this.showLikedItems.bind(this)}>
+              <div className="icon-wrapper">
+                <div className={this.state.likedItems.length > 0 ? 'glyphicon glyphicon-heart' : 'glyphicon glyphicon-heart-empty'}
+                ></div>
+                <div className="cart-likes-indicator">
+                  {this.state.likedItems.length > 0 ? this.state.likedItems.length : ''}
+                </div>
+              </div>
+            </div>
+            <div onClick={this.showCartItems.bind(this)}>
+              <div className="icon-wrapper">
+                <div className="glyphicon glyphicon-shopping-cart mx-3"></div>
+                <div className="cart-items-indicator">{orderedItems.length > 0 ? orderedItems.length : ''}</div>
+              </div>
+            </div>
+          </div>
         </header>
 
         <section className="shop-content">
-            <div className="items-box">
+            <div className="items-box d-flex flex-wrap justify-content-center">
                 {this.items.map(item => (
                     <Item
                         key={item.id}
                         item={item}
                         onButtonClick={this.handleAddToCart.bind(this)}
+                        onLikeAdd={this.addLikedItem.bind(this)}
                     />
                 ))}
             </div>
@@ -90,7 +132,9 @@ class App extends Component {
           <Contacts></Contacts>
         </section>
 
-        <Modal orderedItems={orderedItems}></Modal>
+        <Modal orderedItems={orderedItems}
+               ref={(modal) => { this._modal = modal; }}
+        ></Modal>
       </div>
     );
   }

@@ -9,6 +9,27 @@ body {
 
     .header {
       text-align: center;
+
+      .icon-wrapper {
+
+        .cart-items-indicator, .cart-likes-indicator {
+          position: relative;
+          top: -25px;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+        }
+
+        .cart-likes-indicator {
+          top: -23px;
+        }
+
+        &:hover {
+          .glyphicon {
+            color: $middle-green;
+          }
+        }
+      }
     }
 
     .collection-name {
@@ -27,19 +48,7 @@ body {
       text-align: center;
     }
     section {
-      margin-top: 100px;
-      margin: 100px 10px;
-
-      @media (min-width: 1024px) {
-        max-width: 1400px;
-        margin: 100px auto;
-      }
-
-      .items-box {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+      margin: 100px auto;
     }
   }
 }

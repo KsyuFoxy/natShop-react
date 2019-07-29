@@ -50,11 +50,11 @@ class Modal extends React.Component {
         <button className="button" onClick={this.openModal.bind(this)}>Корзина</button>
         <div className="modal" style={{display:this.state.display}}>
           <div className="modal-content">
-            <span className="close" onClick={this.closeModal.bind(this)}>&times;</span>
+            <span className="close d-flex justify-content-end" onClick={this.closeModal.bind(this)}>&times;</span>
             <Table items={this.props.orderedItems} title={this.state.tableTitle} onChange={(items) => this.updateCart(items)}></Table>
             {hasItems ? (
               <button className="button">Заказать</button>
-            ): (<div className="glyphicon glyphicon-exclamation-sign large disabled"></div>)}
+            ): (<div className="glyphicon glyphicon-alert large disabled"></div>)}
           </div>
         </div>
 
